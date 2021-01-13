@@ -126,6 +126,47 @@ namespace Gestion_des_clients
                 VIDER(this);
         }
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+            // ************** filter *************
+            int p = -1;
+            for (int i = 0; i < DS.Tables["client"].Rows.Count; i++)
+            {
+                if (textBox1.Text == DS.Tables["client"].Rows[i][4].ToString())
+                {
+                    p = i;
+                }
+            }
+            if (p == -1)
+            {
+                MessageBox.Show("client not found");
+            }
+            else
+            {
+
+                if (DS.Tables["client"] != null)
+                {
+                    DS.Tables["client"].Clear();
+                }
+                DA = new SqlDataAdapter("Select  * from clients where Ville = '" + textBox1.Text + "'", cnx);
+                DA.Fill(DS, "client");
+                dataGridView1.DataSource = DS.Tables["client"];
         
+
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            /// afficher **********
+
+            if (DS.Tables["client"] != null)
+            {
+                DS.Tables["client"].Clear();
+            }
+            DA = new SqlDataAdapter("select * from  clients", cnx);
+            DA.Fill(DS, "client");
+            dataGridView1.DataSource = DS.Tables["client"];
+        }
     }
 }
