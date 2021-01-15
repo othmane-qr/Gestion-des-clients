@@ -93,13 +93,14 @@ namespace Gestion_des_clients
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //******** nouvou  *************//
+            //******** Enregistré *************//
 
             SqlCommandBuilder cb = new SqlCommandBuilder(DA);
             DA.Update(DS, "client");
             MessageBox.Show("Les données ont été bien Enregistrées");
         }
         public void VIDER(Control f)
+            ///  nouvou *************
         {
             foreach (Control ct in f.Controls)
             {
@@ -167,6 +168,11 @@ namespace Gestion_des_clients
             DA = new SqlDataAdapter("select * from  clients", cnx);
             DA.Fill(DS, "client");
             dataGridView1.DataSource = DS.Tables["client"];
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
         }
     }
 }
